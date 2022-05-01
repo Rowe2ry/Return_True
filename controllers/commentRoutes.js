@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const loggedIn = require('../utils/loggedIn');
+const authorizeCheck = require('../utils/loggedIn');
 const { Blogpost, Comment } = require('../models');
 
 
 // get ALL comments for a particular post
-router.get('/:id', async (req,res) => {
+router.get('/:id', authorizecheck, async (req,res) => {
     try {
         const postComments = Comment.findAll({
             where: { post_id: req.params.id },
@@ -20,7 +20,7 @@ router.get('/:id', async (req,res) => {
 });
 
 // add a comment to a post
-router.post('/:id', async (req,res) => {
+router.post('/:id', authorizeCheck, async (req,res) => {
     try {
         
         const newComment = await {
@@ -38,7 +38,34 @@ router.post('/:id', async (req,res) => {
 });
 
 // TODO: edit comment
+router.put('/:post_id/:id', authorizeCheck, async (req,res) => {
+    try {
+        Comment.update(req.body, {
+            where: {
+                id: req.params.id,
+                post_id: req.params.post_id,
+            }
+        });
+        res.status(200).json(req.body);
+    } catch (err) {
+        res.status(500).json(err);
+    };
+});
 
 // TODO: delete comment
+router.destroy('/:post_id/:id', authorizeCheck, async (req,res) => {
+    try {
+        // TODO: check to make sure the post also has the user id property of the current user
+        Comment.destroy({
+            where: {
+                id: req.params.id,
+                post_id: req.params.post_id
+            }
+        });
+        res.status(200).json('comment deleted');
+    } catch (err) {
+        res.status(500).json(err);
+    };
+})
 
 module.exports= router;

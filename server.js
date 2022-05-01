@@ -1,6 +1,4 @@
 const express = require('express'); // send and receive data through custom api routes
-const sequelize = require('sequelize'); // communicate with MySQL WITHOUT THE WONKY SQL SYNTAX;
-const mysql = require('mysql2'); // I'm not sure if I need this, but it was mentioned in the README
 const session = require('express-session'); // will use for authentication
 const exphbs = require('express-handlebars'); // template engine for dynamic HTML
 const routes = require('./controllers'); // go to my custom routes to separate concerns
