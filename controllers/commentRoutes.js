@@ -19,4 +19,26 @@ router.get('/:id', async (req,res) => {
     };
 });
 
+// add a comment to a post
+router.post('/:id', async (req,res) => {
+    try {
+        
+        const newComment = await {
+            content: req.body.content, // comment from body (value field in HTML)
+            user_id: req.session.user_id, // current user id from session
+            post_id: req.params.id, // the post id being commented on
+        };
+        
+        const addComment = Comment.create(newComment); // add to database under the comment model
+
+        res.status(200).json(newComment);
+    } catch (err) {
+        res.status(400).json(err);
+    };
+});
+
+// TODO: edit comment
+
+// TODO: delete comment
+
 module.exports= router;
