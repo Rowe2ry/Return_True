@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequalize = require('../config/connection');
+const sequelize = require('../config/connection');
 
 class User extends Model {
     auth(pas) {
@@ -13,28 +13,30 @@ User.init (
             type: DataTypes.INTEGER,
             primaryKey: true,
             allowNull: false,
-            autoIncrement: true
+            autoIncrement: true,
         },
         username: {
             type: DataTypes.STRING,
             allowNull: false,
             validate : {
-                len: [2]
+                len: [2],
             }
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            validae: {
+            validate: {
                 isEmail: true,
             }
         },
-        password: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            len: [8]
-        }
-    },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [8],
+            },
+        },
+    },    
     {
 		sequelize,
 		timestamps: false,

@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequalize = require('../config/connection');
+const sequelize = require('../config/connection');
 
 class Comment extends Model {}
 
@@ -12,7 +12,7 @@ Comment.init (
             autoIncrement: true
         },
         content: {
-            type: DataTypes.text,
+            type: DataTypes.TEXT,
             allowNull: false,
             validate: {
                 notEmpty: true
@@ -43,8 +43,8 @@ Comment.init (
 		timestamps: false,
 		freezeTableName: true,
 		underscored: true,
-		modelName: 'blogpost',
+		modelName: 'comment',
 	}
 );
 
-module.exports = blogpost;
+module.exports = Comment;
