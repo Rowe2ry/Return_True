@@ -7,13 +7,17 @@ const authorizeCheck = require('../utils/loggedIn');
 router.get('/', async (req,res) => {
     try {
         const allBlogs = await Blogpost.findAll();
-        const plainBlogs = allBlogs.map((blog) => {
-            blog.get({ plain: true });
+        const plainBlogs = await allBlogs.map((blog) => {
+            //console.log(blog);
+            return blog.get({ plain: true });
+            // all of the console.log comments below were debugging to find out I needed a "return" statement in my .map function
         });
-        console.log(`\n ------------ ALL -----------\n ${allBlogs}`);
-        console.log(`\n ------------ PLAIN -----------\n ${plainBlogs}`);
-        
-        res.status(200).json(allBlogs);
+        // console.log(`\n ------------ ALL -----------\n ${JSON.stringify(allBlogs[0])}`);
+        // console.log(`\n ------------ PLAIN -----------\n ${plainBlogs}`);
+        // console.log(`\n ------------ SINGLE Complicated -----------\n ${JSON.stringify(allBlogs[0])}`);
+        // console.log(`\n ------------ SINGLE PLAIN -----------\n ${JSON.stringify(plainBlogs[0])}`);
+
+        res.status(200).json(plainBlogs);
     } catch (err) {
         res.status(400).json(err);
     }
