@@ -17,11 +17,8 @@ router.post('/login', async (req,res) => {
         req.session.save(() => { // remember during this session which user is here
             req.session.user_id = userData.id;
             req.session.logged_in = true; // remember they are logged in
-            // TODO: create an inactivity cookie thing
-            
-            res.json({ user: userData, message: 'login success' });
           });
-
+          res.json({ user: userData, message: 'login success' });
         res.render('home');
     } catch (err) {
         res.status(500).json(err);
@@ -43,7 +40,7 @@ router.post('/logout', async (req,res) => {
     };
 });
 
-// TODO: create account post request
+// Create account post request
 router.post('/createAcct', async (req,res) => {
     try {
        if (!req.session.logged_in) {
@@ -54,7 +51,7 @@ router.post('/createAcct', async (req,res) => {
            });
            const thisUSer = await User.findAll({
                where: {
-                   email: = req.body.email
+                   email: req.body.email
                },
            }).get({ plain:true });
 

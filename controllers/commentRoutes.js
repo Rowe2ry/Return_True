@@ -4,7 +4,7 @@ const { Blogpost, Comment } = require('../models');
 
 
 // get ALL comments for a particular post
-router.get('/:id', authorizecheck, async (req,res) => {
+router.get('/:id', authorizeCheck, async (req,res) => {
     try {
         const postComments = Comment.findAll({ // sequelize 'SELECT * FROM COMMENTS WHERE comment.id....
             where: { post_id: req.params.id },
@@ -56,7 +56,7 @@ router.put('/:id', authorizeCheck, async (req,res) => {
 });
 
 // Delete comment
-router.destroy('/:id', authorizeCheck, async (req,res) => {
+router.delete('/:id', authorizeCheck, async (req,res) => {
     try {
         const thisComment = await Comment.findByPk(req.params.id).get({ plain: true }); // target a comment
         if (thisComment.user_id !== req.session.user_id) { // make sure this user has rights to it
