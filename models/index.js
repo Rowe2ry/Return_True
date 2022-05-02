@@ -8,7 +8,7 @@ User.hasMany(Blogpost, {
 });
 
 Blogpost.belongsTo(User, {
-    foriengKey: 'user_id'
+    foreignKey: 'user_id'
 });
 
 Blogpost.hasMany(Comment, {
@@ -17,7 +17,7 @@ Blogpost.hasMany(Comment, {
 });
 
 Comment.belongsTo(Blogpost, {
-    foriegnKey: 'post_id'
+    foreignKey: 'post_id'
 });
 
 module.exports = {
