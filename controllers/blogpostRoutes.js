@@ -24,7 +24,8 @@ router.get('/', async (req,res) => {
 });
 
 // Get one blogpost | gotta be logged in to see details
-router.get('/:id', authorizeCheck, async (req,res) => {
+// TODO: add "authorizeCheck" middleware once sessions are started
+router.get('/:id', async (req,res) => {
     try {
         const thisPost = await Blogpost.findByPk(req.params.id);
         if (!thisPost) {
@@ -38,41 +39,60 @@ router.get('/:id', authorizeCheck, async (req,res) => {
     };
 });
 
-// Edit a blogpost | DEFINITELY gotta be logged in to edit a post, and it has to be YOUR post
-router.put('/:id', authorizeCheck ,async (req,res) => {
+router.post('/', async (req,res) => {
     try {
-        const thisPost = await (await Blogpost.findByPk(req.params.id)).get({ plain:true });
+        Blogpost.create({
+            title: req.body.title,
+            body: req.body.body,
+            user_id: 1 // TODO: req.session.user_id when authorization is working
+        });
+        res.status(200).json('post created');
+    } catch (err) {
+        res.status(400).json(err);
+    };
+});
 
-        if (thisPost.user_id !== req.session.user_id) {
+// Edit a blogpost | DEFINITELY gotta be logged in to edit a post, and it has to be YOUR post
+// TODO: add "authorizeCheck" middleware once sessions are started
+router.put('/:id', /*async*/ (req,res) => {
+    try {
+        // const thisPost = await (await Blogpost.findByPk(req.params.id)).get({ plain:true });
+
+        // TODO: un-comment out the if else statement when authorization is set up
+        /*if (thisPost.user_id !== req.session.user_id) {
             throw new Error('Edit blog post access not granted.')
-        } else {
-            Blogpost.update(req.body, {
+        } else { */
+            Blogpost.update({
+                title: req.body.title,
+                body: req.body.body,
+            }, {
                 where: {
                     id: req.params.id
                 }
             });
             res.status(200).json('post updated');
-        };
+        /*};*/ // TODO: un-comment out if else statement with auth is working
     } catch (err) {
         res.status(500).json(err);
     };
 })
 
 // Delete a blogpost | DEFINITELY the same requirement as editing to delete
-router.delete('/:id', authorizeCheck, async (req,res) => {
+// TODO: add "authorizeCheck" middleware once sessions are started
+router.delete('/:id', async (req,res) => {
     try {
-        const thisPost = await (await Blogpost.findByPk(req.params.id)).get({ plain:true });
+        /* const thisPost = await (await Blogpost.findByPk(req.params.id)).get({ plain:true });
 
         if (thisPost.user_id !== req.session.user_id) {
             throw new Error('Edit blog post access not granted.')
-        } else {
+        } else { */ // TODO: un-comment out if else statement with auth is working
             Blogpost.destroy({
                 where: {
                     id: req.params.id
                 }
             });
-            res.status(200).json(thisPost);
-        };
+            res.status(200).json('Post Deleted');
+        /*};*/ //TODO: un-comment this closing bracket after auth working
     } catch (err) {
         res.status(500).json(err);
     }
