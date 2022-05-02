@@ -12,37 +12,37 @@ const seedUsers = async () => {
         {
             username: 'User1',
             email: 'useone@example.com',
-            password: passwordsDefined[0] // Root1234_1
+            password: 'Root1234_1' //passwordsDefined[0] // Root1234_1
         },
         {
             username: 'User2',
             email: 'usetwo@example.com',
-            password: passwordsDefined[1] // Root1234_2
+            password: 'Root1234_2' //passwordsDefined[1] // Root1234_2
         },
         {
             username: 'User3',
             email: 'usethree@example.com',
-            password: passwordsDefined[2] // Root1234_3
+            password: 'Root1234_3' //passwordsDefined[2] // Root1234_3
         },
         {
             username: 'User4',
             email: 'usefour@example.com',
-            password: passwordsDefined[3] // Root1234_4
+            password: 'Root1234_4' //passwordsDefined[3] // Root1234_4
         },
         {
             username: 'User5',
             email: 'usefive@example.com',
-            password: passwordsDefined[4] // Root1234_5
+            password: 'Root1234_5' //passwordsDefined[4] // Root1234_5
         },
         {
             username: 'User6',
             email: 'usesix@example.com',
-            password: passwordsDefined[5] // Root1234_6
+            password: 'Root1234_6' //passwordsDefined[5] // Root1234_6
         },
         {
             username: 'User7',
             email: 'usesix@example.com',
-            password: passwordsDefined[6] // Root1234_7
+            password: 'Root1234_7' //passwordsDefined[6] // Root1234_7
         }
     
     ];
