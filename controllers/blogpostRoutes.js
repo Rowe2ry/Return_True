@@ -9,8 +9,11 @@ router.get('/', async (req,res) => {
         const allBlogs = await Blogpost.findAll();
         const plainBlogs = allBlogs.map((blog) => {
             blog.get({ plain: true });
-        })
-        res.status(200).json(plainBlogs);
+        });
+        console.log(`\n ------------ ALL -----------\n ${allBlogs}`);
+        console.log(`\n ------------ PLAIN -----------\n ${plainBlogs}`);
+        
+        res.status(200).json(allBlogs);
     } catch (err) {
         res.status(400).json(err);
     }
