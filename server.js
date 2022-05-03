@@ -5,7 +5,7 @@ const routes = require('./controllers'); // go to my custom routes to separate c
 const connection = require('./config/connection'); // use the configuration file to get into the database using the credentials in the ENV
 const path = require('path');
 
-const hbs = exphbs.create(); // express handlebars docs say to do this
+const hbs = exphbs.create({}); // express handlebars docs say to do this
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
