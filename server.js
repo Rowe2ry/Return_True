@@ -5,10 +5,7 @@ const routes = require('./controllers'); // go to my custom routes to separate c
 const connection = require('./config/connection'); // use the configuration file to get into the database using the credentials in the ENV
 const path = require('path');
 
-const hbs = exphbs.create({
-    layoutsDir: path.join(__dirname, "views/layouts"),
-    defaultLayout: 'main'
-}); // express handlebars docs say to do this
+const hbs = exphbs.create(); // express handlebars docs say to do this
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -18,7 +15,6 @@ const PORT = process.env.PORT || 3001;
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', '.handlebars');
-app.set('views',path.join(__dirname, './views'));
 
 app.use(express.json()); // read and write to JSON: true
 app.use(express.urlencoded({ extended: true })); // allow URL info to be parsed in JS
