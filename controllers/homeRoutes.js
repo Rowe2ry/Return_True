@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
             return blog.title;
         });
         // res.status(200).json(blogTitlesOnly);
-         const homePage = await res.render('home', {
+        res.render('home', {
             blogTitlesOnly,
             logged_in: req.session.logged_in,
         });
