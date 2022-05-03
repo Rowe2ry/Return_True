@@ -6,7 +6,7 @@ const res = require('express/lib/response');
 
 router.get('/login', async (req,res) => {
     try {
-        res.status(200).render('login'); // this is just a get request to see the login page
+        res.render('login'); // this is just a get request to see the login page
     } catch (err) {
         res.status(500).json(err);
     };
@@ -19,10 +19,19 @@ router.post('/login', async (req,res) => {
             req.session.logged_in = true; // remember they are logged in
           });
           res.json({ user: userData, message: 'login success' });
-        res.render('home');
+        res.redirect('/');
     } catch (err) {
         res.status(500).json(err);
     }
+});
+
+// Go to Log Out page (page should load perform the logout post request onload)
+router.get('/logout', async (req,res) => {
+    try {
+        const logout = await res.render('/logout')
+    } catch (err) {
+        res.status(400).json(err); // error status
+    };
 });
 
 // Log Out
@@ -68,3 +77,5 @@ router.post('/createAcct', async (req,res) => {
 });
 
 module.exports = router;
+
+return true;

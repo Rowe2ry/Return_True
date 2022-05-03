@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width:100%;
+    top: 0;
+    background-color: #161820;
+}
+
+header {
+    bottom: 0;
+    width:100%;
+    min-height: 30px;
+    background-color: #161820;
+}
+
+.nav__primary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__secondary {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+    align-items: center;
+    list-style: none;
+}
+
+.nav_item,
+li > a {
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.card {
+    padding: .5em;
+    background-color: #ddd;
+    border-radius: 1.5rem;
+    margin: .5em; 
+}
+
+.blog__title {
+    margin: .125em .375em;
+}

@@ -23,6 +23,27 @@ router.get('/', async (req,res) => {
     }
 });
 
+// get one blog by title
+router.get('/byTitle/:title', async (req,res) => {
+    try {
+        const titleString = req.params.title.split('%20').join(' ');
+        console.log(titleString);
+        const thisPost = await Blogpost.findAll({
+            where: { title: titleString }
+        });
+        const author = await User.findByPk(thisPost.user_id)
+        if (!thisPost) {
+            throw new Error('Blogpost could not be found');
+        } else {
+            const plainPost = thisPost.get( { plain: true });
+            const user = author.get({ plain:true });
+            res.status(200).render('oneBlog', {plainPost, user});
+        };
+    } catch (err) {
+        res.status(500).json(err);
+    };
+});
+
 // Get one blogpost | gotta be logged in to see details
 // TODO: add "authorizeCheck" middleware once sessions are started
 router.get('/:id', async (req,res) => {

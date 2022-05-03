@@ -5,13 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogs Homepage</title>
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/skeleton.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header>
-        <nav>
-
-    </nav>
+    <header class="row">
+        <nav class="container nav__primary u-full-width">
+            <img src="assets/img/rt_logo.png" alt="return true logo- just the words 'return true;'">
+            <ul class="nav__secondary">
+                <li class="nav__item">
+                    <a href="/">Home</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/blog">Blogs</a>
+                </li>
+                {{#if logged_in}}
+                <li class="nav__item">
+                    <a href="/account/logout">Logout</a>
+                </li>
+                {{else}}
+                <li class="nav__item">
+                    <a href="/account/login">Login</a>
+                </li>
+                {{/if}}
+            </ul>
+        </nav>
     </header>
-    {{{ body }}}
+    <main class="container">
+        {{{ body }}}
+    </main>
+    <footer>
+
+    </footer>
+    <script src="/assets/scripts/script.js"></script>
 </body>
 </html>
