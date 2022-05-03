@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 3001;
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+app.set('views','./views');
 
 app.use(express.json()); // read and write to JSON: true
 app.use(express.urlencoded({ extended: true })); // allow URL info to be parsed in JS
