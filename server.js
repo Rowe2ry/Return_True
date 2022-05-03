@@ -19,7 +19,7 @@ app.set('views','./views');
 
 app.use(express.json()); // read and write to JSON: true
 app.use(express.urlencoded({ extended: true })); // allow URL info to be parsed in JS
-app.use(express.static(path.join(__dirname, './public'))); // allow relative pathing
+app.use(express.static(path.resolve(__dirname, './public'))); // allow relative pathing
 
 app.use(session({
     secret: 'Dont tell anyone',
