@@ -63,7 +63,9 @@
 
   click on the blog post you wish to read. Log in to comment or post blog posts.  
 
-  
+  ![Screenshot of the Home Page](./README_assets/Homepage.png)
+  ![Screenshot of the blogs page](./README_assets/BlogPosts.png)
+  The application is not complete at this time. The 2nd screenshot shows the blogs page returning raw JSON data from the database, parsed into a more readible format by a chrome extension.
 
   ## License  
 
