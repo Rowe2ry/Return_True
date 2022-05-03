@@ -14,11 +14,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.engine('handlebars', hbs.engine);
-app.set('view engine', '.handlebars');
+app.set('view engine', 'handlebars');
 
 app.use(express.json()); // read and write to JSON: true
 app.use(express.urlencoded({ extended: true })); // allow URL info to be parsed in JS
-app.use(express.static(path.join(__dirname, './public'))); // allow relative pathing
+app.use(express.static(path.join(__dirname, 'public'))); // allow relative pathing
 
 app.use(session({
     secret: 'Dont tell anyone',
