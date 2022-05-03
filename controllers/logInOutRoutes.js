@@ -3,7 +3,7 @@ const loggedIn = require('../utils/loggedIn');
 const { User } = require('../models');
 const res = require('express/lib/response');
 
-
+/*
 router.get('/login', async (req,res) => {
     try {
         res.render('login'); // this is just a get request to see the login page
@@ -75,7 +75,7 @@ router.post('/createAcct', async (req,res) => {
         res.status(400).json(err);
     };
 });
+*/
+
 
 module.exports = router;
-
-return true;
